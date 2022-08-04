@@ -5,6 +5,7 @@ getcontext().prec = 6
 
 def calculation(user_input):
     user_input = user_input.replace('+', ' + ')
+    user_input = user_input.replace('-', ' - ')
     user_input = user_input.split(" ")
     sum_list = []
 
@@ -13,6 +14,14 @@ def calculation(user_input):
             sum_list.append(int(user_input[i]))
         if i % 2 == 1:
             sum_list.append(user_input[i])
-        
-    result = sum_list[0] + sum_list[2]
+
+    for i in sum_list:
+        if i == '+':
+            result = sum_list[0] + sum_list[2]
+        elif i == '-':
+            result = sum_list[0] - sum_list[2]
+
     return result
+
+
+
