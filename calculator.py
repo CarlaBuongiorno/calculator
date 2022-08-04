@@ -18,19 +18,24 @@ def calculation(user_input):
 
     for i in range(0, len(user_input)):
         if i % 2 == 0:
-            sum_list.append(int(user_input[i]))
+            number = int(user_input[i])
+            sum_list.append(number)
         if i % 2 == 1:
-            sum_list.append(user_input[i])
+            operator = user_input[i]
+            sum_list.append(operator)
 
     for i in sum_list:
+        if i == operator:
+            num1 = sum_list[sum_list.index(operator) - 1]
+            num2 = sum_list[sum_list.index(operator) + 1]
         if i == '+':
-            result = sum_list[0] + sum_list[2]
+            result = num1 + num2
         elif i == '-':
-            result = sum_list[0] - sum_list[2]
+            result = num1 - num2
         elif i == '*':
-            result = sum_list[0] * sum_list[2]
+            result = num1 * num2
         elif i == '/':
-            result = sum_list[0] / sum_list[2]
+            result = num1 / num2
 
     return result
 
