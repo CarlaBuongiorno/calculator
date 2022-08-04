@@ -4,8 +4,15 @@ getcontext().prec = 6
 
 
 def calculation(user_input):
-    user_input = user_input.replace('+', ' + ')
-    user_input = user_input.replace('-', ' - ')
+# Credit -> https://thispointer.com/python-replace-multiple-characters-in-a-string/
+    char_to_replace = {'+': ' + ',
+                       '-': ' - ',
+                       '*': ' * ',
+                       '/': ' / '
+                       }
+    for key, value in char_to_replace.items():
+        user_input = user_input.replace(key, value)
+        
     user_input = user_input.split(" ")
     sum_list = []
 
@@ -20,6 +27,10 @@ def calculation(user_input):
             result = sum_list[0] + sum_list[2]
         elif i == '-':
             result = sum_list[0] - sum_list[2]
+        elif i == '*':
+            result = sum_list[0] * sum_list[2]
+        elif i == '/':
+            result = sum_list[0] / sum_list[2]
 
     return result
 

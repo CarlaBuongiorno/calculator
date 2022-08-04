@@ -7,6 +7,8 @@ from calculator import calculation
         ("4+6", 10),
         ("5+11", 16),
         ("5-3", 2),
+        ("5*3", 15),
+        ("9/3", 3),
     ]
 )
 def test_sum(test_input, expected):
