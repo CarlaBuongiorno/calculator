@@ -4,7 +4,15 @@ getcontext().prec = 6
 
 
 def calculation(user_input):
-# Credit -> https://thispointer.com/python-replace-multiple-characters-in-a-string/
+    
+    sum_list = get_sum_list(user_input)
+    new_sum_list = calculate_new_sum_list(sum_list)
+
+    return new_sum_list
+
+
+def get_sum_list(user_input):
+    # Credit -> https://thispointer.com/python-replace-multiple-characters-in-a-string/
     char_to_replace = {'+': ' + ',
                        '-': ' - ',
                        '*': ' * ',
@@ -18,26 +26,33 @@ def calculation(user_input):
 
     for i in range(0, len(user_input)):
         if i % 2 == 0:
-            number = int(user_input[i])
+            number = Decimal(user_input[i])
             sum_list.append(number)
         if i % 2 == 1:
             operator = user_input[i]
             sum_list.append(operator)
-
-    for i in sum_list:
-        if i == operator:
-            num1 = sum_list[sum_list.index(operator) - 1]
-            num2 = sum_list[sum_list.index(operator) + 1]
-        if i == '+':
-            result = num1 + num2
-        elif i == '-':
-            result = num1 - num2
-        elif i == '*':
-            result = num1 * num2
-        elif i == '/':
-            result = num1 / num2
-
-    return result
+    
+    return sum_list
 
 
+def calculate_new_sum_list(sum_list):
 
+    while len(sum_list) >= 3:
+        num1 = sum_list[0]
+        num2 = sum_list[2]
+        operator = sum_list[1]
+
+        if operator == '+':
+            new_sum_list = num1 + num2
+        elif operator == '-':
+            new_sum_list = num1 - num2
+        elif operator == '*':
+            new_sum_list = num1 * num2
+        elif operator == '/':
+            new_sum_list = num1 / num2
+
+        if len(sum_list) >= 3:
+            del sum_list[0:2]
+            sum_list.insert(0, new_sum_list)
+    
+    return new_sum_list
